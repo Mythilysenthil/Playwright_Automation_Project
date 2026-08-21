@@ -18,7 +18,7 @@ Then("the user should be redirected to the dashboard page", async function (this
     await this.adp.profileclick();
     await expect(this.adp.getuseremail()).toHaveText("Testing course", {
        timeout: TIMEOUTS.MEDIUM
-    });
+    }); 
     await this.page.keyboard.press('Escape');
     await this.adp.signout.waitFor({ state: 'hidden', timeout: TIMEOUTS.MEDIUM }).catch(() => {});
 });

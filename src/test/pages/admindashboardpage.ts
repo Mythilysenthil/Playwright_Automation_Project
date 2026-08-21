@@ -82,10 +82,11 @@ export class admindashboardpage extends BasePage{
     }
     
     //logout
+    
     async SignoutButton(){
         await this.Click(this.signout);
     } 
-    
+
     async ClickQuestionBank(){
         await this.Click(this.questionBank);
     }

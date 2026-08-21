@@ -12,7 +12,7 @@ When(`the user clicks on the logout button`, async function (this: CustomWorld){
 Then(`the user should be redirected to the login page`, async function (this: CustomWorld){
     //await this.page.pause();
     await expect(this.page).toHaveURL('https://lms-smartcliff.vercel.app/login');
-    logger.info('User is successfully redirected to the login page');
+    logger.info('User is successfully redirected to the login page'); 
 });
 
 Then(`the login page should be displayed`, async function (this: CustomWorld){
