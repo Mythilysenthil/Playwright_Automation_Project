@@ -14,6 +14,7 @@ export class admindashboardpage extends BasePage{
     readonly dynRec: Locator
     readonly AdmRec: Locator
     readonly signout: Locator
+    readonly questionBank:Locator
     
     constructor(page:Page){
         super(page)
@@ -28,6 +29,7 @@ export class admindashboardpage extends BasePage{
         this.dynRec = this.page.locator("//div[@class='mt-2']/div[1]/child::*[1]/child::*[2]");
         this.AdmRec = this.page.locator("//div[@class='mb-4']/div[2]/div[2]/div/span");
         this.signout = this.page.getByRole('menuitem', { name: /sign out/i });
+        this.questionBank = this.page.locator("(//div[@class='p-1.5'])[3]");
     }
     async profileclick(){
         let isVisible = await this.signout.isVisible().catch(() => false);
@@ -82,5 +84,9 @@ export class admindashboardpage extends BasePage{
     //logout
     async SignoutButton(){
         await this.Click(this.signout);
+    } 
+    
+    async ClickQuestionBank(){
+        await this.Click(this.questionBank);
     }
 }

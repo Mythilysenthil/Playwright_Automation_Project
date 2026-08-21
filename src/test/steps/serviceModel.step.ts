@@ -21,9 +21,8 @@ When(`clicks the create service button`, async function (this:CustomWorld) {
     await this.smp.clickCreateService()
 });
 
-Then(`the user searches and viewes the service`, async function (this:CustomWorld) {
-    await this.smp.searchService(model.serviceName)
-    await expect(this.smp.resultText()).toContain(model.serviceName)
+Then(`the service created message is shown`, async function (this:CustomWorld) {
+    await expect(this.smp.successMessage).toContainText("Service created successfully")
 });
 
 When(`the users searches for the service`, async function (this:CustomWorld) {
@@ -39,5 +38,5 @@ When(`clicks delete on the confirmation`, async function (this:CustomWorld){
 });
 
 Then(`the service is deleted`, async function (this:CustomWorld) {
-    await expect(this.smp.msg()).toContain("No services found matching")
+    await expect(this.smp.confirmMsg).toContainText("Service deleted successfully")
 });

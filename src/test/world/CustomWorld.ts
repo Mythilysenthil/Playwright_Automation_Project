@@ -11,6 +11,7 @@ import { CourseManagementPage } from '../pages/CourseManagementPage';
 import { pedagogy_dynamic_page } from '../pages/pedagogy_dynamic_page';
 import { AddCourseStructurePage } from '../pages/AddCourseStructurePage';
 import { serviceModelPage } from '../pages/serviceModelPage';
+import { QuestionBankPage } from '../pages/QuestionBankPage';
 
 export class CustomWorld extends World{
     browser!:Browser;
@@ -27,6 +28,7 @@ export class CustomWorld extends World{
     pdp!:pedagogy_dynamic_page;
     acsp!:AddCourseStructurePage
     smp!: serviceModelPage
+    qbp!:QuestionBankPage
 }
 
 setWorldConstructor(CustomWorld);

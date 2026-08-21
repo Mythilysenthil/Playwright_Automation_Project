@@ -12,12 +12,13 @@ import { CourseManagementPage } from '../pages/CourseManagementPage'
 import { pedagogy_dynamic_page } from '../pages/pedagogy_dynamic_page'
 import { serviceModelPage } from '../pages/serviceModelPage'
 import { AddCourseStructurePage } from '../pages/AddCourseStructurePage'
+import { QuestionBankPage } from '../pages/QuestionBankPage'
 
 let browser : Browser
 setDefaultTimeout(90 * 1000);
 BeforeAll(async()=>{
     logger.info("Launching Browser")
-    browser = await chromium.launch({headless:true})
+    browser = await chromium.launch({headless:false})
 
 })
 
@@ -41,6 +42,7 @@ Before(async function(this:CustomWorld,scenario){
     this.cmp= new CourseManagementPage(this.page);
     this.acsp=new AddCourseStructurePage (this.page);
     this.smp = new serviceModelPage(this.page)
+    this.qbp = new QuestionBankPage(this.page)
 })
 
 After(async function(this:CustomWorld,scenario){

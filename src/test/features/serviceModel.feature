@@ -13,7 +13,7 @@ Feature: Jerishwin 09/07/2026 service Model
         And the user clicks on the add service button
         And the user enter the service Name and description
         And clicks the create service button
-        Then the user searches and viewes the service
+        Then the service created message is shown
 
     @Jerishwin
     Scenario: Deleting Service

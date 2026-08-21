@@ -72,7 +72,7 @@ export class CourseManagementPage extends BasePage{
         this.uploadphotoButton = this.page.locator('div').filter({ hasText: /^Choose Image$/ })
         this.nextButton = this.page.getByRole('button', { name: 'Next' })
         this.saveLayoutButton = this.page.getByRole('button', { name: 'Save Course Layout' })
-        this.tostMsg = this.page.getByText("Course updated successfully!")
+        this.tostMsg = this.page.getByRole("alert").filter({ hasText: "Course updated successfully!" });
         this.previewButton =this.page.getByRole('button', { name: 'Preview & Update' })
         this.dateSort = this.page.locator("//th[1]/span")
         this.clientSort = this.page.locator("//th[2]/span")
@@ -165,7 +165,6 @@ export class CourseManagementPage extends BasePage{
 
     async fillSecondPage(data: CourseData){
         await this.SelectCustomDropdown(this.courseLevelDropDown,data.courseLevel);
-        // await this.UploadFile(this.uploadphotoButton,'Playwright_Automation_Project\\src\\test\\test-data\\logo.png')
     }
 
     // sort course actions
