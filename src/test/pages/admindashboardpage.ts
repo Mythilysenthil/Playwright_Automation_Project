@@ -13,6 +13,7 @@ export class admindashboardpage extends BasePage{
     readonly leftArrow:Locator
     readonly dynRec: Locator
     readonly AdmRec: Locator
+    readonly signout: Locator
     
     constructor(page:Page){
         super(page)
@@ -26,11 +27,21 @@ export class admindashboardpage extends BasePage{
         this.leftArrow = this.page.locator("(//button[@data-slot='button'])[6]");
         this.dynRec = this.page.locator("//div[@class='mt-2']/div[1]/child::*[1]/child::*[2]");
         this.AdmRec = this.page.locator("//div[@class='mb-4']/div[2]/div[2]/div/span");
+        this.signout = this.page.getByRole('menuitem', { name: /sign out/i });
     }
     async profileclick(){
-        await this.Click(this.profileavatar)
-
+        let isVisible = await this.signout.isVisible().catch(() => false);
+        if (!isVisible) {
+            await this.Click(this.profileavatar);
+            isVisible = await this.signout.isVisible({ timeout: TIMEOUTS.SHORT }).catch(() => false);
+        }
+        if (!isVisible) {
+        // menu didn't open on first attempt — retry once
+        await this.Click(this.profileavatar);
+        }
+        await this.signout.waitFor({ state: 'visible', timeout: TIMEOUTS.LONG });
     }
+
      getuseremail(){
         return this.dashboardtext
     }
@@ -66,5 +77,10 @@ export class admindashboardpage extends BasePage{
 
     async PreviousActivity(){
         return await this.GetText(this.AdmRec);
+    }
+    
+    //logout
+    async SignoutButton(){
+        await this.Click(this.signout);
     }
 }

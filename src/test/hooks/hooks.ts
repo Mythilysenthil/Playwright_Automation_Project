@@ -24,7 +24,9 @@ BeforeAll(async()=>{
 Before(async function(this:CustomWorld,scenario){
     logger.info(`Starting scenario: ${scenario.pickle.name}`)
     this.browser=browser
-    this.browserContext=await browser.newContext()
+    this.browserContext=await browser.newContext({
+       //viewport: { width: 1920, height: 1080 }
+    })
     this.page = await this.browserContext.newPage()
     this.bp = new BasePage(this.page);
     this.lp = new loginpage(this.page);
@@ -46,7 +48,8 @@ After(async function(this:CustomWorld,scenario){
         const path =`reports/screenshots/${scenario.pickle.name}_${Date.now()}.png`
         await this.page.screenshot({path})
         logger.error(`Scenario Failed: ${scenario.pickle.name}`)
-        
+        logger.error(`Reason: ${scenario.result.message}`)
+        logger.error(`Screenshot saved: ${path}`)
     }else{
         logger.info(`Scenario Passed: ${scenario.pickle.name}`)
     }

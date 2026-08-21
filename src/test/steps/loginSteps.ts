@@ -16,9 +16,11 @@ When("the user clicks on the login button", async function (this: CustomWorld) {
 });
 Then("the user should be redirected to the dashboard page", async function (this: CustomWorld) {
     await this.adp.profileclick();
-await expect(this.adp.getuseremail()).toHaveText("Testing course", {
-    timeout: TIMEOUTS.MEDIUM
-});
+    await expect(this.adp.getuseremail()).toHaveText("Testing course", {
+       timeout: TIMEOUTS.MEDIUM
+    });
+    await this.page.keyboard.press('Escape');
+    await this.adp.signout.waitFor({ state: 'hidden', timeout: TIMEOUTS.MEDIUM }).catch(() => {});
 });
 When(
   "the user enters {string} and {string}",
